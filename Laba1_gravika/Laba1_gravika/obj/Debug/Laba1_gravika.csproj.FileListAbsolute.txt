@@ -1,0 +1,10 @@
+C:\Users\s22380638\source\repos\Laba1_gravika\Laba1_gravika\bin\Debug\Laba1_gravika.exe.config
+C:\Users\s22380638\source\repos\Laba1_gravika\Laba1_gravika\bin\Debug\Laba1_gravika.exe
+C:\Users\s22380638\source\repos\Laba1_gravika\Laba1_gravika\bin\Debug\Laba1_gravika.pdb
+C:\Users\s22380638\source\repos\Laba1_gravika\Laba1_gravika\obj\Debug\Laba1_gravika.csprojAssemblyReference.cache
+C:\Users\s22380638\source\repos\Laba1_gravika\Laba1_gravika\obj\Debug\Laba1_gravika.Form1.resources
+C:\Users\s22380638\source\repos\Laba1_gravika\Laba1_gravika\obj\Debug\Laba1_gravika.Properties.Resources.resources
+C:\Users\s22380638\source\repos\Laba1_gravika\Laba1_gravika\obj\Debug\Laba1_gravika.csproj.GenerateResource.cache
+C:\Users\s22380638\source\repos\Laba1_gravika\Laba1_gravika\obj\Debug\Laba1_gravika.csproj.CoreCompileInputs.cache
+C:\Users\s22380638\source\repos\Laba1_gravika\Laba1_gravika\obj\Debug\Laba1_gravika.exe
+C:\Users\s22380638\source\repos\Laba1_gravika\Laba1_gravika\obj\Debug\Laba1_gravika.pdb
