@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba1_gravika", "Laba1_gravika\Laba1_gravika.csproj", "{9B6C88A2-AE66-47A9-95F7-3E7B6092AFFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B6C88A2-AE66-47A9-95F7-3E7B6092AFFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B6C88A2-AE66-47A9-95F7-3E7B6092AFFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B6C88A2-AE66-47A9-95F7-3E7B6092AFFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B6C88A2-AE66-47A9-95F7-3E7B6092AFFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E40CD029-83F6-405D-836F-B5D379E7A0EE}
+	EndGlobalSection
+EndGlobal
