@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -82,6 +83,78 @@ namespace Laba1_gravika
             Filters filter = new GausFilter();
             backgroundWorker1.RunWorkerAsync(filter);
         }
+
+        private void grayScaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new GrayS();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void сепияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new Sepia();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void повыситьЯркостьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new Yarkost();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void фильтрСобеляToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new Sobel();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void повыситьРезкостьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new Rezkost();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void выделениеГраницToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new Shara();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void выделениеГраницПрюиттаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new Priut();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void переносToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new Perenos();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void поворотToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new Povorot();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void волны1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new Volna1();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void волны2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new Volna2();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void стеклоToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Filters filter = new Steklo();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
     }
     public abstract class Filters
     {
@@ -114,6 +187,118 @@ namespace Laba1_gravika
         {
             Color sourceColor = sourceImage.GetPixel(x, y);
             Color resultColor = Color.FromArgb(255 - sourceColor.R, 255 - sourceColor.G, 255 - sourceColor.B);
+            return resultColor;
+        }
+    }
+
+    public class GrayS : Filters
+    {
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        {
+            Color sourceColor = sourceImage.GetPixel(x, y);
+            double red = sourceColor.R;
+            double blue = sourceColor.B;
+            double green = sourceColor.G;
+            int res =(int) Math.Round(red * 0.299+0.587*green+0.114*blue);
+            Color resultColor = Color.FromArgb(res, res, res);
+            return resultColor;
+        }
+    }
+
+    public class Sepia : Filters
+    {
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        {
+            Color sourceColor = sourceImage.GetPixel(x, y);
+            double red = sourceColor.R;
+            double blue = sourceColor.B;
+            double green = sourceColor.G;
+            int res = (int) Math.Round(red * 0.299 + 0.587 * green + 0.114 * blue);
+            Color resultColor = Color.FromArgb(Clamp(res+2*50,0,255), Clamp(res + 25 , 0, 255), Clamp(res - 1 * 50, 0, 255));
+            return resultColor;
+        }
+    }
+
+    public class Yarkost : Filters
+    {
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        {
+            Color sourceColor = sourceImage.GetPixel(x, y);
+            Color resultColor = Color.FromArgb(Clamp(sourceColor.R+10,0,255), Clamp(sourceColor.G + 10, 0, 255), Clamp(sourceColor.B + 10, 0, 255));
+            return resultColor;
+        }
+    }
+
+    public class Perenos : Filters
+    {
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        {
+            x = x + 50;
+            int k = sourceImage.Width - 1;
+            x=Clamp(x, 0, sourceImage.Width-1);
+            Color sourceColor = sourceImage.GetPixel(x, y);
+            Color resultColor = Color.FromArgb((sourceColor.R), (sourceColor.G ), (sourceColor.B));
+            return resultColor;
+        }
+    }
+
+    public class Povorot : Filters
+    {
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        {
+            int xc = sourceImage.Width / 2;
+            int yc = sourceImage.Height / 2;
+            double xv = (x-xc)*0.7-(y-yc)*0.7+xc;
+            double yv= (x - xc) * 0.7 + (y - yc) * 0.7 + yc;
+            x = (int)Math.Round(xv, 0);
+            y = (int)Math.Round(yv, 0);
+            x = Clamp(x, 0, sourceImage.Width - 1);
+            y = Clamp(y, 0, sourceImage.Height - 1);
+            Color sourceColor = sourceImage.GetPixel(x, y);
+            Color resultColor = Color.FromArgb((sourceColor.R), (sourceColor.G), (sourceColor.B));
+            return resultColor;
+        }
+    }
+
+    public class Volna1 : Filters
+    {
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        {
+            double xv = x + 20 * Math.Sin(2 * Math.PI * y / 60);
+            x = (int)Math.Round(xv, 0);
+            x = Clamp(x, 0, sourceImage.Width - 1);
+            Color sourceColor = sourceImage.GetPixel(x, y);
+            Color resultColor = Color.FromArgb((sourceColor.R), (sourceColor.G), (sourceColor.B));
+            return resultColor;
+        }
+    }
+
+    public class Volna2 : Filters
+    {
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        {
+            double xv = x + 20 * Math.Sin(2 * Math.PI * x / 60);
+            x = (int)Math.Round(xv, 0);
+            x = Clamp(x, 0, sourceImage.Width - 1);
+            Color sourceColor = sourceImage.GetPixel(x, y);
+            Color resultColor = Color.FromArgb((sourceColor.R), (sourceColor.G), (sourceColor.B));
+            return resultColor;
+        }
+    }
+
+    public class Steklo : Filters
+    {
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        {
+            Random rand = new Random();
+            double xv = x +  5* (rand.Next(0, 1) - 0.5);
+            double yv = y + 5 * (rand.Next(0, 1) - 0.5);
+            x = (int)Math.Round(xv, 0);
+            y = (int)Math.Round(yv, 0);
+            x = Clamp(x, 0, sourceImage.Width - 1);
+            y = Clamp(y, 0, sourceImage.Height - 1);
+            Color sourceColor = sourceImage.GetPixel(x, y);
+            Color resultColor = Color.FromArgb((sourceColor.R), (sourceColor.G), (sourceColor.B));
             return resultColor;
         }
     }
@@ -177,4 +362,58 @@ namespace Laba1_gravika
         public GausFilter()
         { createGausKernel(3, 2); }
     }
+
+    class Sobel : MatrixFilter
+    {
+        public Sobel()
+        {
+            int size = 3;
+            kernel = new float[size, size];
+            kernel[0 ,0]= -1; kernel[0, 1] = -2; kernel[0, 2] = -1;
+            kernel[1, 0] = 0; kernel[1, 1] = 0; kernel[1, 2] = 0;
+            kernel[2, 0] = 1; kernel[2, 1] = 2; kernel[2, 2] = 1;
+        }
+
+    }
+
+    class Rezkost : MatrixFilter
+    {
+        public Rezkost()
+        {
+            int size = 3;
+            kernel = new float[size, size];
+            kernel[0, 0] = 0; kernel[0, 1] = -1; kernel[0, 2] = 0;
+            kernel[1, 0] = -1; kernel[1, 1] = 5; kernel[1, 2] = -1;
+            kernel[2, 0] = 0; kernel[2, 1] = -1; kernel[2, 2] = 0;
+        }
+
+    }
+
+    class Shara : MatrixFilter
+    {
+        public Shara()
+        {
+            int size = 3;
+            kernel = new float[size, size];
+            kernel[0, 0] = 3; kernel[0, 1] = 10; kernel[0, 2] = 3;
+            kernel[1, 0] = 0; kernel[1, 1] = 0; kernel[1, 2] = 0;
+            kernel[2, 0] = -3; kernel[2, 1] = -10; kernel[2, 2] = -3;
+        }
+
+    }
+
+    class Priut : MatrixFilter
+    {
+        public Priut()
+        {
+            int size = 3;
+            kernel = new float[size, size];
+            kernel[0, 0] = -1; kernel[0, 1] = -1; kernel[0, 2] = -1;
+            kernel[1, 0] = 0; kernel[1, 1] = 0; kernel[1, 2] = 0;
+            kernel[2, 0] = 1; kernel[2, 1] = 1; kernel[2, 2] = 1;
+        }
+
+    }
+
 }
+
