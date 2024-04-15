@@ -1,0 +1,17 @@
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\obj\Debug\Shyrigin_tamograma.csprojAssemblyReference.cache
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\obj\Debug\Shyrigin_tamograma.Form1.resources
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\obj\Debug\Shyrigin_tamograma.Properties.Resources.resources
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\obj\Debug\Shyrigin_tamograma.csproj.GenerateResource.cache
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\obj\Debug\Shyrigin_tamograma.csproj.CoreCompileInputs.cache
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\bin\Debug\Shyrigin_tamograma.exe.config
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\bin\Debug\Shyrigin_tamograma.exe
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\bin\Debug\Shyrigin_tamograma.pdb
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\bin\Debug\OpenTK.dll
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\bin\Debug\OpenTK.GLControl.dll
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\bin\Debug\OpenTK.pdb
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\bin\Debug\OpenTK.xml
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\bin\Debug\OpenTK.dll.config
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\bin\Debug\OpenTK.GLControl.xml
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\obj\Debug\Shyrigin_tamograma.csproj.CopyComplete
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\obj\Debug\Shyrigin_tamograma.exe
+C:\Users\s22380638\source\repos\Shyrigin_tamograma\Shyrigin_tamograma\obj\Debug\Shyrigin_tamograma.pdb
