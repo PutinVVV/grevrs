@@ -60,7 +60,7 @@ namespace Shyrigin_tamograma
                     array = new short[arraySize + 1];
                     for (int i = 0; i < arraySize; i++)
                         array[i] = reader.ReadInt16();
-                    
+
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace Shyrigin_tamograma
         {
             Bitmap textureImage;
             int VBOtexture;
-            public void Load2DTexture() 
+            public void Load2DTexture()
             {
                 GL.BindTexture(TextureTarget.Texture2D, VBOtexture);
                 BitmapData data = textureImage.LockBits(new System.Drawing.Rectangle(0, 0, textureImage.Width, textureImage.Height),
@@ -77,7 +77,43 @@ namespace Shyrigin_tamograma
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba,
                     data.Width, data.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra,
                     PixelType.UnsignedByte, data.Scan0);
-                !!!!!!!!!!!!!
+                textureImage.UnlockBits(data);
+                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter,
+                    (int)TextureMinFilter.Linear);
+                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter,
+                    (int)TextureMinFilter.Linear);
+                ErrorCode Er = GL.GetError();
+                string str = Er.ToString();
+
+            }
+
+            public void generateTextureImage(int layerNumber)
+            {
+                textureImage = new Bitmap(Bin.X, Bin.Y);
+                for (int i = 0; i < Bin.X; ++i)
+                    for (int j = 0; j < Bin.Y; ++j)
+                    {
+                        int PixelNumber = i + j * Bin.X + layerNumber * Bin.X * Bin.Y;
+                        textureImage.SetPixel(i, j, TransferFunction(Bin.array[PixelNumber]));
+                    }
+            }
+            public void DrawTexture()
+            {
+                GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+                GL.Enable(EnableCap.Texture2D);
+                GL.BindTexture(TextureTarget.Texture2D, VBOtexture);
+                GL.Begin(BeginMode.Quads);
+                GL.Color3(Color.White);
+                GL.TexCoord2(0f, 0f);
+                GL.Vertex2(0, 0);
+                GL.TexCoord2(0f, 1f);
+                GL.Vertex2(0, Bin.Y);
+                GL.TexCoord2(1f, 1f);
+                GL.Vertex2(Bin.X, Bin.Y);
+                GL.TexCoord2(1f, 0f);
+                GL.Vertex2(Bin.X, 0);
+                GL.End();
+                GL.Disable(EnableCap.Texture2D);
             }
             public void SetupView(int wid, int hei)
             {
@@ -150,16 +186,31 @@ namespace Shyrigin_tamograma
                 view.SetupView(glControl1.Width, glControl1.Height);
                 loaded = true;
                 glControl1.Invalidate();
-                trackBar1.Maximum = bin.Zer()-1;
+                trackBar1.Maximum = bin.Zer() - 1;
             }
         }
         int currentLayer = 0;
+        bool needReload = false;
+        bool quads = true;
         private void glControl1_Paint(object sender, PaintEventArgs e)
         {
             if (loaded)
             {
+
                 View view = new View();
-                view.DrawQuads((int)currentLayer);
+                if (quads == false)
+                {
+                    if (needReload)
+                    {
+                        view.generateTextureImage(currentLayer);
+                        view.Load2DTexture();
+                        needReload = false;
+                    }
+                    view.DrawTexture();
+                }
+                else
+                    view.DrawQuads((int)currentLayer);
+
                 glControl1.SwapBuffers();
             }
         }
@@ -167,6 +218,7 @@ namespace Shyrigin_tamograma
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             currentLayer = trackBar1.Value;
+            needReload = true;
         }
         void Application_Idle(object sender, EventArgs e)
         {
@@ -176,7 +228,19 @@ namespace Shyrigin_tamograma
                 glControl1.Invalidate();
             }
         }
-    }
 
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            quads = true;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            quads = false;
+        }
+
+
+
+    }
 }
 
